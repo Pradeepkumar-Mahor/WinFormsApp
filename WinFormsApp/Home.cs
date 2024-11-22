@@ -1,10 +1,6 @@
 using DbAccess;
-using DocumentFormat.OpenXml.Office2010.CustomUI;
-using Microsoft.VisualBasic;
-using System.Configuration;
+
 using System.Data;
-using System.Data.Common;
-using System.Windows.Forms;
 
 namespace WinFormsApp
 {
