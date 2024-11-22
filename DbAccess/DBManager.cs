@@ -103,8 +103,9 @@ namespace DbAccess
             }
         }
 
-        public IDataReader GetDataReader(string commandText, CommandType commandType, IDbDataParameter[] parameters, out IDbConnection connection)
+        public IDataReader GetDataReader(string commandText, CommandType commandType, IDbDataParameter[] parameters)
         {
+            IDbConnection connection = database.CreateConnection();
             connection = database.CreateConnection();
             connection.Open();
 
