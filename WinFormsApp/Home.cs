@@ -11,6 +11,9 @@ namespace WinFormsApp
     {
         private DBManager _db = new DBManager("MyConn");
 
+        private string msgType = "";
+        private string msgText = "";
+
         public Home()
         {
             InitializeComponent();
@@ -23,6 +26,16 @@ namespace WinFormsApp
             {
                 DataTable talData = _db.GetDataTable("SELECT * from Production.Product", CommandType.Text);
                 dataGridView.DataSource = talData;
+
+                IDbDataParameter[] param = new[]
+                {
+                    _db.CreateParameter("@PName",size:100, "PVal", DbType.String,ParameterDirection.Input),
+                    _db.CreateParameter("@PId",size:5, 101, DbType.Int32,ParameterDirection.Input)
+                };
+
+                _db.Insert("Insert Cmd", CommandType.Text, out msgType, out msgText, param);
+
+                MessageBox.Show(msgText);
             }
             catch (Exception ex)
             {

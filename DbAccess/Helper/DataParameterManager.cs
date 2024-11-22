@@ -11,7 +11,7 @@ namespace DbAccess
             IDbDataParameter? parameter = null;
             switch (providerName.ToLower())
             {
-                case "system.data.sqlclient":
+                case "sql.data.sqlclient":
                     return CreateSqlParameter(name, value, dbType, direction);
 
                 case "system.data.oracleclient":
@@ -32,7 +32,7 @@ namespace DbAccess
             IDbDataParameter? parameter = null;
             switch (providerName.ToLower())
             {
-                case "system.data.sqlclient":
+                case "sql.data.sqlclient":
                     return CreateSqlParameter(name, size, value, dbType, direction);
 
                 case "system.data.oracleclient":
