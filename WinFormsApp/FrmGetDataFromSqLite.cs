@@ -49,7 +49,8 @@ namespace WinFormsApp
                             Certifications as ""Certifications"",
                             Temp as ""Temp"",
                             Hazardous_Location as ""Hazardous Location""
-                        from Power_Supply   where Power_Supply.Manufacturer = ifnull(@Pmanufacturer,Power_Supply.Manufacturer)  ";
+                        from Power_Supply
+                            where Manufacturer = ifnull(@Pmanufacturer,Manufacturer)";
                 IDbDataParameter[] param = new[]
                 {
                           //_db.CreateParameter("@Pmanufacturer","Phoenix Contact", DbType.String)
