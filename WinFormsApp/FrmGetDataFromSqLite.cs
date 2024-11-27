@@ -49,11 +49,12 @@ namespace WinFormsApp
                             Certifications as ""Certifications"",
                             Temp as ""Temp"",
                             Hazardous_Location as ""Hazardous Location""
-                        from Power_Supply   where Power_Supply.Manufacturer = @Pmanufacturer ";
+                        from Power_Supply   where Power_Supply.Manufacturer = ifnull(@Pmanufacturer,Power_Supply.Manufacturer)  ";
                 IDbDataParameter[] param = new[]
                 {
-                          _db.CreateParameter("@Pmanufacturer","Phoenix Contact", DbType.String)
-                    };
+                          //_db.CreateParameter("@Pmanufacturer","Phoenix Contact", DbType.String)
+                          _db.CreateParameter("@Pmanufacturer",null, DbType.String)
+                        };
                 DataTable talData = _db.GetDataTable(strQry, CommandType.Text, param);
                 dataGridView.DataSource = talData;
 
