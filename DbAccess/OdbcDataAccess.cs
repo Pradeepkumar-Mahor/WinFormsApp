@@ -5,6 +5,7 @@ namespace DbAccess
 {
     public class OdbcDataAccess : IDatabaseHandler
     {
+        private string TestConnectionString = "Driver={ODBC Driver};Server=your_server;Database=your_database;Uid=your_username;Pwd=your_password;";
         private string ConnectionString { get; set; }
 
         public OdbcDataAccess(string connectionString)
@@ -14,14 +15,15 @@ namespace DbAccess
 
         public IDbConnection CreateConnection()
         {
-            return new OdbcConnection(ConnectionString);
+            OdbcConnection connection = new(ConnectionString);
+            return connection;
         }
 
         public void CloseConnection(IDbConnection connection)
         {
-            OdbcConnection odbcConnection = (OdbcConnection)connection;
-            odbcConnection.Close();
-            odbcConnection.Dispose();
+            OdbcConnection OdbcConnection = (OdbcConnection)connection;
+            OdbcConnection.Close();
+            OdbcConnection.Dispose();
         }
 
         public IDbCommand CreateCommand(string commandText, CommandType commandType, IDbConnection connection)
@@ -41,8 +43,8 @@ namespace DbAccess
 
         public IDbDataParameter CreateParameter(IDbCommand command)
         {
-            OdbcCommand SQLcommand = (OdbcCommand)command;
-            return SQLcommand.CreateParameter();
+            OdbcCommand Odbccommand = (OdbcCommand)command;
+            return Odbccommand.CreateParameter();
         }
     }
 }

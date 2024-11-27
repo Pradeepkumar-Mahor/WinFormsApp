@@ -25,7 +25,23 @@ namespace WinFormsApp
         {
             try
             {
-                DataTable talData = _db.GetDataTable("SELECT * from Production.Product", CommandType.Text);
+                string strQry = $@"Select ProductID as ""Id"" ,
+                                Name as ""Product Name"" ,
+                                ProductNumber as ""Product Number"" ,
+                                MakeFlag as ""Make Flag"" ,
+                                FinishedGoodsFlag as ""Finished Goods Flag"" ,
+                                Color as ""Product Color"" ,
+                                SafetyStockLevel as ""Safety Stock Level"" ,
+                                ReorderPoint as ""Reorder Point"" ,
+                                StandardCost as ""Standard Cost"" ,
+                                ListPrice as ""List Price"" ,Size as ""Product Size"" ,
+                                SizeUnitMeasureCode as ""Size Unit Measure Code"" ,
+                                WeightUnitMeasureCode as ""Weight Unit Measure Code"" ,Weight as ""Product Weight""
+                            from Production.Product
+                            ";
+
+                //DataTable talData = _db.GetDataTable("SELECT * from Production.Product", CommandType.Text);
+                DataTable talData = _db.GetDataTable(strQry, CommandType.Text);
                 dataGridView.DataSource = talData;
 
                 //IDbDataParameter[] param = new[]

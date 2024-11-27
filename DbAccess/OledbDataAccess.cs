@@ -1,39 +1,50 @@
 ﻿using System.Data;
+using System.Data.OleDb;
 
 namespace DbAccess
 {
     public class OledbDataAccess : IDatabaseHandler
     {
-        private readonly string connectionString;
+        private string TestConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\path\\to\\your\\database.mdb;";
+        private readonly string ConnectionString;
 
         public OledbDataAccess(string connectionString)
         {
-            this.connectionString = connectionString;
-        }
-
-        public void CloseConnection(IDbConnection connection)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDataAdapter CreateAdapter(IDbCommand command)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDbCommand CreateCommand(string commandText, CommandType commandType, IDbConnection connection)
-        {
-            throw new NotImplementedException();
+            this.ConnectionString = connectionString;
         }
 
         public IDbConnection CreateConnection()
         {
-            throw new NotImplementedException();
+            OleDbConnection connection = new(ConnectionString);
+            return connection;
+        }
+
+        public void CloseConnection(IDbConnection connection)
+        {
+            OleDbConnection OledbConnection = (OleDbConnection)connection;
+            OledbConnection.Close();
+            OledbConnection.Dispose();
+        }
+
+        public IDbCommand CreateCommand(string commandText, CommandType commandType, IDbConnection connection)
+        {
+            return new OleDbCommand
+            {
+                CommandText = commandText,
+                Connection = (OleDbConnection)connection,
+                CommandType = commandType
+            };
+        }
+
+        public IDataAdapter CreateAdapter(IDbCommand command)
+        {
+            return new OleDbDataAdapter((OleDbCommand)command);
         }
 
         public IDbDataParameter CreateParameter(IDbCommand command)
         {
-            throw new NotImplementedException();
+            OleDbCommand Oledbcommand = (OleDbCommand)command;
+            return Oledbcommand.CreateParameter();
         }
     }
 }
