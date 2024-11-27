@@ -6,7 +6,7 @@ namespace WinFormsApp
 {
     public partial class Home : MetroFramework.Forms.MetroForm
     {
-        private DBManager _db = new DBManager("MyConn");
+        private DBManager _db = new DBManager("SqlServerConnection");
 
         private string msgType = "";
         private string msgText = "";
