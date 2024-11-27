@@ -1,14 +1,16 @@
 ﻿using System.Data.SQLite;
 using System.Data;
-using Microsoft.Data.Sqlite;
 using System.Data.Common;
+using Microsoft.Data.SqlClient;
+using LiteDB;
+using System.Drawing;
 
 namespace DbAccess
 {
     public class SqlLiteDataAccess : IDatabaseHandler
     {
         private string TestConnectionString = "Data Source=sample.db";
-        private string ConnectionString { get; set; }
+        private string ConnectionString;
 
         public SqlLiteDataAccess(string connectionString)
         {
@@ -17,39 +19,34 @@ namespace DbAccess
 
         public IDbConnection CreateConnection()
         {
-            return new SqliteConnection(ConnectionString);
+            return new SQLiteConnection(ConnectionString);
         }
 
         public void CloseConnection(IDbConnection connection)
         {
-            SqliteConnection sqlConnection = (SqliteConnection)connection;
+            SQLiteConnection sqlConnection = (SQLiteConnection)connection;
             sqlConnection.Close();
             sqlConnection.Dispose();
         }
 
         public IDbCommand CreateCommand(string commandText, CommandType commandType, IDbConnection connection)
         {
-            return new SqliteCommand
+            return new SQLiteCommand
             {
                 CommandText = commandText,
-                Connection = (SqliteConnection)connection,
+                Connection = (SQLiteConnection)connection,
                 CommandType = commandType
             };
         }
 
         public IDataAdapter CreateAdapter(IDbCommand command)
         {
-            SqlLiteDataAccess dataAdapter = new SqlLiteDataAccess(ConnectionString);
-
-            DataSet dataSet = new DataSet();
-            dataAdapter.CreateAdapter(command);
-
-            return (IDataAdapter)dataAdapter;
+            return new SQLiteDataAdapter((SQLiteCommand)command);
         }
 
         public IDbDataParameter CreateParameter(IDbCommand command)
         {
-            SqliteCommand SQLcommand = (SqliteCommand)command;
+            SQLiteCommand SQLcommand = (SQLiteCommand)command;
             return SQLcommand.CreateParameter();
         }
     }

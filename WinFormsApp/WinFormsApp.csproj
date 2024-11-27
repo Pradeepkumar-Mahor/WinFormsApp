@@ -18,4 +18,16 @@
     <ProjectReference Include="..\DbAccess\DbAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="FrmGetDataFromSqLite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Information_tool_data.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

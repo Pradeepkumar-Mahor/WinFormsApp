@@ -33,6 +33,14 @@ namespace DbAccess
                     database = new OdbcDataAccess(connectionStringSettings.ConnectionString);
                     break;
 
+                case "npgsql":
+                    database = new PostgreSQLDataAccess(connectionStringSettings.ConnectionString);
+                    break;
+
+                case "system.data.sqlite":
+                    database = new SqlLiteDataAccess(connectionStringSettings.ConnectionString);
+                    break;
+
                 default:
                     break;
             }

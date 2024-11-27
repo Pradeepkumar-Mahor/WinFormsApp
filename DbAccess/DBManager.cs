@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using DocumentFormat.OpenXml.Office.Word;
+using System.Data;
 
 namespace DbAccess
 {
@@ -142,10 +143,10 @@ namespace DbAccess
                         }
                         int result = 0;
                         result = command.ExecuteNonQuery();
-                        if (result == 1)
+                        if (result >= 1)
                         {
                             msgType = "OK";
-                            msgText = "Record Deleted Successfully";
+                            msgText = $"{result} : Record Deleted Successfully";
                         }
                         else
                         {
