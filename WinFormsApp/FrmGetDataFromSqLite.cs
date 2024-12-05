@@ -53,8 +53,8 @@ namespace WinFormsApp
                             where Manufacturer = ifnull(@Pmanufacturer,Manufacturer)";
                 IDbDataParameter[] param = new[]
                 {
-                          //_db.CreateParameter("@Pmanufacturer","Phoenix Contact", DbType.String)
-                          _db.CreateParameter("@Pmanufacturer",null, DbType.String)
+                          _db.CreateParameter("@Pmanufacturer","Phoenix Contact", DbType.String)
+                          //_db.CreateParameter("@Pmanufacturer",null, DbType.String)
                         };
                 DataTable talData = _db.GetDataTable(strQry, CommandType.Text, param);
                 dataGridView.DataSource = talData;
