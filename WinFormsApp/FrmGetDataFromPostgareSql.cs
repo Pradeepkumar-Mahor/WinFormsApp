@@ -3,7 +3,7 @@ using System.Data;
 
 namespace WinFormsApp
 {
-    public partial class FrmGetDataFromPostgareSql : MetroFramework.Forms.MetroForm
+    public partial class FrmGetDataFromPostgareSql : Form
     {
         private readonly DBManager _db = new("PostgareSqlConnection");
 

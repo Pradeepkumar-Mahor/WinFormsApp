@@ -3,7 +3,7 @@ using System.Data;
 
 namespace WinFormsApp
 {
-    public partial class FrmGetDataFromSqLite : MetroFramework.Forms.MetroForm
+    public partial class FrmGetDataFromSqLite : Form
     {
         private readonly DBManager _db = new("SqLiteConnection");
 

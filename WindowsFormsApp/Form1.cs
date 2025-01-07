@@ -1,11 +1,7 @@
 ﻿using System.Data;
 using System.Windows.Forms;
 using System;
-using Microsoft.Data.Sql;
-using System.Linq;
-using System.Data.Common;
-using System.Runtime.InteropServices.ComTypes;
-using ADGV;
+using AdODotNetFramework;
 
 namespace WindowsFormsApp
 {

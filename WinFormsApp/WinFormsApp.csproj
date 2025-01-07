@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+		<PropertyGroup>
+
+			<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+			<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
@@ -9,10 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ADGV" Version="0.1.0.10" />
-    <PackageReference Include="MetroFramework" Version="1.2.0.3" />
-    <PackageReference Include="MetroFramework.Design" Version="1.2.0.3" />
-    <PackageReference Include="MetroModernUI" Version="1.4.0" />
+    <PackageReference Include="hcc2sdkcs" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>
